@@ -1,9 +1,10 @@
 import { Fragment } from 'react';
+import { v4 } from 'uuid';
 export default function Moves({ history, onJump }) {
   return (
     <Fragment>
       {history.map((_, move) => (
-        <li>
+        <li key={v4()}>
           <button
             type="button"
             onClick={() => onJump(move)}
