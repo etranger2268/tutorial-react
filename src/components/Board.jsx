@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { calculateWinner } from '../utils/calculateWinner';
 import Square from './Square';
 
@@ -12,7 +13,7 @@ export default function Board({ xIsNext, squares, onPlay }) {
   };
 
   return (
-    <div className="m-5 p-0">
+    <Fragment>
       <div className="mb-2.5">{status}</div>
       <div className="flex">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
@@ -29,6 +30,6 @@ export default function Board({ xIsNext, squares, onPlay }) {
         <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
-    </div>
+    </Fragment>
   );
 }
