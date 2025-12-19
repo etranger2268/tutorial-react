@@ -1,4 +1,6 @@
 import { Fragment } from 'react';
+import { v4 } from 'uuid';
+import { BOARD_ROWS } from '../constants';
 import { calculateWinner } from '../utils/calculateWinner';
 import Square from './Square';
 
@@ -15,21 +17,13 @@ export default function Board({ xIsNext, squares, onPlay }) {
   return (
     <Fragment>
       <div className="mb-2.5">{status}</div>
-      <div className="flex">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="flex">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="flex">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
-      </div>
+      {BOARD_ROWS.map((row) => (
+        <div key={v4()} className="flex">
+          {row.map((val) => (
+            <Square key={v4()} value={squares[val]} onSquareClick={() => handleClick(val)} />
+          ))}
+        </div>
+      ))}
     </Fragment>
   );
 }
