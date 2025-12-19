@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Board from './Board';
+import Moves from './Moves';
 
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
@@ -11,13 +12,17 @@ export default function Game() {
     setXIsNext((prev) => !prev);
   };
 
+  const jumpTo = (index) => {};
+
   return (
-    <div className="flex flex-row">
-      <div className="ml-5">
+    <div className="flex flex-row space-x-8">
+      <div>
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
-      <div>
-        <ol>{/*TODO*/}</ol>
+      <div className="ml-5 mt-8">
+        <ol className="space-y-1 list-decimal">
+          <Moves history={history} onJump={jumpTo} />
+        </ol>
       </div>
     </div>
   );
