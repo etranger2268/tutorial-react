@@ -3,21 +3,20 @@ import Board from './Board';
 import Moves from './Moves';
 
 export default function Game() {
-  const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([[...Array(9)].map(() => null)]);
   const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
   const handlePlay = (nextSquares) => {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
-    setXIsNext((prev) => !prev);
+    const nextMove = currentMove + 1;
+    setHistory((prev) => [...prev.slice(0, nextMove), nextSquares]);
+    setCurrentMove(nextMove);
   };
 
   const jumpTo = (nextMove) => {
     setCurrentMove(nextMove);
-    setXIsNext(nextMove % 2 === 0);
+    setHistory((prev) => prev.slice(0, nextMove + 1));
   };
 
   return (

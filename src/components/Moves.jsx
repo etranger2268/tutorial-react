@@ -10,7 +10,7 @@ export default function Moves({ history, onJump }) {
             onClick={() => onJump(move)}
             className="border bg-gray-50 text-sm px-2"
           >
-            {move > 0 ? `Go to move ${move}` : `Go to game start`}
+            {move > 0 ? `Go to move #${move}` : `Go to game start`}
           </button>
         </li>
       ))}
